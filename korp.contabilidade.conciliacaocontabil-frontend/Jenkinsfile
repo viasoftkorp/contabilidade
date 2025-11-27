@@ -1,0 +1,48 @@
+def hasApplication = true              // OPCIONAL - default true
+def appIdentifier = "CON21_W" // OBRIGATÓRIO caso HasApplication seja `true`
+def appName = "conciliacao-contabil"       // OPCIONAL - default "ServiceName"
+def appBuildSuffix = "-portal"         // OPCIONAL - default "-portal"
+def applicationFolder = "."        // OPCIONAL - default: "."
+
+def skipTests = true            // OPCIONAL - default false
+def runAsContainer = true       // OPCIONAL - default false
+
+def shouldLogEnvVariables = true // OPCIONAL - default false
+def shouldLogVersions = true     // OPCIONAL - default true
+
+def publishDevelopment = false // Caso seu serviço não seja publicado no portal interno, set para false
+def publishProduction = true // Caso seu serviço não rode em produção, set para false
+
+def jnlpImageTag = "1.1.x"
+
+def buildType = "frontend"
+
+def data = """ {
+    "serviceName": "${env.JOB_NAME.replaceFirst(/^([^\/]+?)\/.*$/, '$1')}",
+    "buildNumber": "${env.BUILD_NUMBER}",
+    "buildType": "${buildType}",
+    "branchName": "${env.BRANCH_NAME}",
+	"shouldPublishDevelopment": ${publishDevelopment},
+    "shouldPublishProduction": ${publishProduction},
+
+    "hasApplication": ${hasApplication},
+    "appIdentifier": "${appIdentifier}",
+    "appName": "${appName}",
+    "appBuildSuffix": "${appBuildSuffix}",
+    "applicationFolder": "${applicationFolder}",
+
+    "jnlpImageTag": "${jnlpImageTag}",
+
+    "skipTests": ${skipTests},
+    "runAsContainer": ${runAsContainer},
+    "shouldLogEnvVariables": ${shouldLogEnvVariables},
+    "shouldLogVersions": ${shouldLogVersions}
+}
+"""
+
+request = httpRequest httpMode: 'POST',
+                        contentType: 'APPLICATION_JSON',
+                        requestBody: data,
+                        url: "${env.GENERATE_JENKINSFILE_URL_V2}",
+                        customHeaders: [[name: 'MiddlewareToken', value: env.VIASOFT_JENKINS_MIDDLEWARE_TOKEN]]
+evaluate(request.content)
