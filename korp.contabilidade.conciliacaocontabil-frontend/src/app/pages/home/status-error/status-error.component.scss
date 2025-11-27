@@ -1,0 +1,10 @@
+:host ::ng-deep {
+    .title h1 {
+        font-weight: 600;
+    }
+
+    vs-layout {
+        overflow: auto;
+        max-height: 90vh;
+    }
+}
