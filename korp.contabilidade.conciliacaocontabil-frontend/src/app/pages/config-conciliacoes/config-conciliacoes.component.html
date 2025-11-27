@@ -1,0 +1,28 @@
+<div class="flex flex-1 flex-column">
+    <vs-layout>
+        <vs-header title>
+            <vs-icon icon="hand-holding-dollar"></vs-icon>
+            <vs-label title label="Config.Conciliacoes.Title"></vs-label>
+        </vs-header>
+
+        <div content>
+            <vs-grid class="w-expand" [options]="gridConciliacoes"></vs-grid>
+        </div>
+
+    </vs-layout>
+
+    <vs-layout *ngIf="selectedConciliacaoId">
+        <vs-header title>
+            <vs-icon icon="rectangle-list"></vs-icon>
+            <vs-label title model="title" label="Config.Contas.Title"></vs-label>
+            <div actions>
+                <vs-button label="Config.Contas.AddTitle" icon="plus" navMode="true"
+                    (clickEvent)="openAddAcountModal()" />
+            </div>
+        </vs-header>
+
+        <div content>
+            <vs-grid class="w-expand" [options]="gridConciliacoesContas"></vs-grid>
+        </div>
+    </vs-layout>
+</div>

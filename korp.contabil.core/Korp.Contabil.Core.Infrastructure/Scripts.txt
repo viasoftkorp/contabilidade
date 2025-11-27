@@ -1,0 +1,10 @@
+﻿cd .\Korp.Contabil.Core.Infrastructure\
+dotnet ef migrations add "Adding ..." -s ..\Korp.Contabil.Core.Host\ --context LegacyContabilDbContext
+
+dotnet ef database update -s ..\Korp.Contabil.Core.Host\ --context LegacyContabilDbContext
+
+revert migration
+    dotnet ef --startup-project ..\Korp.Contabil.Core.Host\ database update "Migration name" --context LegacyContabilDbContext
+
+remove migration
+    dotnet ef --startup-project ..\Korp.Contabil.Core.Host\ migrations remove --context LegacyContabilDbContext

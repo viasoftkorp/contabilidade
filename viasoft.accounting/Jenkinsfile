@@ -1,0 +1,22 @@
+def composeName = "compose-crm.yml"    // Nome do compose. Ex: "your-service.yml"
+
+def publishProduction = true // Caso seu serviço não rode em produção, set para false
+
+def buildType = "csharp"
+
+def data = """ {
+    "serviceName": "${env.JOB_NAME.replaceFirst(/^([^\/]+?)\/.*$/, '$1')}",
+    "buildNumber": "${env.BUILD_NUMBER}",
+    "buildType": "${buildType}",
+    "branchName": "${env.BRANCH_NAME}",
+    "shouldPublishProduction": ${publishProduction},
+    "composeName": "${composeName}",
+    "publishServerIp": "${env.IP_PROCESS_4_ARM}"
+}
+"""
+request = httpRequest httpMode: 'POST',
+                        contentType: 'APPLICATION_JSON',
+                        requestBody: data,
+                        url: "${env.GENERATE_JENKINSFILE_URL_V2}",
+                        customHeaders: [[name: 'MiddlewareToken', value: env.VIASOFT_JENKINS_MIDDLEWARE_TOKEN]]
+evaluate(request.content)

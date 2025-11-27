@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Folder Include="Migrations" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Viasoft.Core.EntityFrameworkCore" Version="4.12.34" />
+        <PackageReference Include="Viasoft.Core.DDD" Version="4.12.34" />
+        <PackageReference Include="Viasoft.Data.Seeder" Version="4.12.34" />
+        <PackageReference Include="Viasoft.Core.EntityFrameworkCore.SqlServer" Version="4.12.34" />
+        <PackageReference Include="Viasoft.Core.EntityFrameworkCore.SqlServer.Legacy" Version="4.12.34" />
+        <PackageReference Include="Viasoft.Core.ServiceBus.SQLServer" Version="4.12.34" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Viasoft.Accounting.Domain\Viasoft.Accounting.Domain.csproj" />
+
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Viasoft.Data.Seeder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <HintPath>..\..\..\.nuget\packages\viasoft.data.seeder\1.2.0\lib\netstandard2.0\Viasoft.Data.Seeder.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+</Project>

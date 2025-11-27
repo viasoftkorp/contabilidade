@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Data.SqlClient" Version="4.1.0" />
+      <PackageReference Include="Viasoft.Core.DDD" Version="4.12.34" />
+      <PackageReference Include="Viasoft.Core.DDD.Application" Version="4.12.34" />
+      <PackageReference Include="Viasoft.Core.EntityFrameworkCore" Version="4.12.34" />
+      <PackageReference Include="Viasoft.Core.Mapper" Version="4.12.34" />
+      <PackageReference Include="Viasoft.Core.MultiTenancy" Version="4.12.34" />
+      <PackageReference Include="Viasoft.Core.ServiceBus" Version="4.12.34" />
+      <PackageReference Include="Viasoft.Core.ServiceBus.Abstractions" Version="4.12.34" />
+      <PackageReference Include="Viasoft.Data" Version="4.12.34" />
+      <PackageReference Include="Korp.EntidadesLegadas.ACL.Core" Version="2023.3.0-preview67" />
+      <PackageReference Include="NodaTime" Version="3.0.3" />
+    </ItemGroup>
+</Project>
