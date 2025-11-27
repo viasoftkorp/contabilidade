@@ -1,0 +1,84 @@
+:host ::ng-deep {
+    max-height: 100%;
+    overflow: auto;
+    background-color: #fff;
+
+    vs-header.nav-mode {
+        flex: initial;
+        height: unset;
+        max-height: unset;
+    }
+
+    .vs-drawer-toggle-button {
+        z-index: 3;
+    }
+
+    .wrapper {
+        flex: 1;
+        overflow: auto;
+
+        .grid-periodos-container {
+            max-width: 25vw;
+        }
+
+        .status {
+            height: 100%;
+            &:not(.error) button {
+                cursor: default;
+                pointer-events: none;
+            }
+            vs-label,
+            vs-icon {
+                color: #fff;
+            }
+        }
+
+        mat-drawer {
+            width: 350px;
+            height: 100%;
+            display: block;
+        }
+
+        .mat-drawer-container {
+            width: 100%;
+            background-color: #fff;
+
+            .mat-drawer-inner-container {
+                overflow: hidden;
+            }
+        }
+        .home-div15 {
+            overflow: auto;
+            flex: 1;
+
+            vs-layout > [content] {
+                overflow: unset;
+            }
+
+            .header-grid-desc {
+                header {
+                    min-height: 30px;
+                    padding-left: 12px; // aligns icon with grid erase filters button
+                }
+            }
+
+            .home-div16 {
+                width: 50%;
+            }
+            .home-div19 {
+                width: 1px;
+                background: #c3c3c3;
+            }
+            .home-div20 {
+                width: 50%;
+            }
+        }
+    }
+}
+::ng-deep {
+    .view-conciliacoes {
+        .mat-mdc-form-field-subscript-wrapper {
+            display: none;
+        }
+    }
+}

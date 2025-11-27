@@ -1,0 +1,28 @@
+<vs-dialog class="overflow-auto">
+    <vs-icon icon model="main_title" icon="circle-xmark" color="#ef5350" />
+    <vs-label title class="title" model="main_title" label="Erro ao conciliar {{data.descricao}}:" />
+
+    <div content>
+        <div class="overflow-auto m-5 p-3 bg-yellow-50 border border-neutral-300 rounded-md">
+            <code>
+                {{data.erro}}
+            </code>
+        </div>
+    </div>
+
+    <div footer class="flex-align-flex-end-center">
+        <vs-button (clickEvent)="copyError()" type="cancel">
+            <div class="flex flex-align-center-center">
+                <ng-container *ngIf="!copied">
+                    <vs-icon icon="copy" color="#fff" />
+                    <vs-label label="Copiar Erro" />
+                </ng-container>
+                <ng-container *ngIf="copied">
+                    <vs-icon icon="check" color="#fff" />
+                    <vs-label label="Copiado" />
+                </ng-container>
+            </div>
+        </vs-button>
+        <vs-button (clickEvent)="closeModal()" type="save" label="Ok" />
+    </div>
+</vs-dialog>

@@ -1,0 +1,10 @@
+dotnet ef --startup-project ..\Viasoft.Accounting.Host\ migrations add "temp" --context "AccountingDbContext"
+dotnet ef --startup-project ..\Viasoft.Accounting.Host\ migrations remove --context "AccountingDbContext"
+dotnet ef --startup-project ..\Viasoft.Accounting.Host\ database update --context "AccountingDbContext"
+
+
+dotnet ef --startup-project ..\Viasoft.Accounting.Host\ migrations add "temp" --context "LegacyAccountingDbContext"
+dotnet ef --startup-project ..\Viasoft.Accounting.Host\ migrations remove --context "LegacyAccountingDbContext"
+dotnet ef --startup-project ..\Viasoft.Accounting.Host\ database update --context "LegacyAccountingDbContext"
+
+

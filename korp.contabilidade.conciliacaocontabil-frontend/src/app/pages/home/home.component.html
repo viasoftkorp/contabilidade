@@ -1,0 +1,83 @@
+<div class="flex flex-column h-full max-h-full wrapper">
+  <vs-header mode="nav">
+    <div class="h-full flex flex-align-flex-start-center" actions>
+      <vs-button [navMode]="true" label="Conciliacoes.AddPeriodo.Title" icon="plus"
+        (clickEvent)="openAddPeriodo()"></vs-button>
+      <div class="view-conciliacoes flex flex-align-flex-start-center max-h-[40px]">
+        <vs-label model="sub_title" label="Conciliacoes.ViewConciliacoes" />
+
+        <vs-form>
+          <form [formGroup]="formGroup">
+            <vs-select class="view-conciliacoes" [options]="viewConciliacaoOptions" formControlName="view_conciliacao"
+              [cleanable]="false" [required]="true"></vs-select>
+          </form>
+        </vs-form>
+      </div>
+    </div>
+    <div info class="h-full">
+      <vs-button *ngIf="isDone(); else progress" navMode="true" class="bg-green-400 status" icon="check"
+        label="Conciliacoes.Status.Done" />
+      <ng-template #progress>
+        <vs-button *ngIf="isInProgress(); else error" navMode="true" icon="arrow-progress" class="bg-blue-400 status"
+          label="Conciliacoes.Status.Progress" />
+      </ng-template>
+      <ng-template #error>
+        <vs-button *ngIf="hasError()" icon="circle-exclamation" iconColor="red" label="Conciliacoes.Status.Error"
+          navMode="true" class="bg-red-400 status error" (clickEvent)="showStatusError()" />
+      </ng-template>
+    </div>
+  </vs-header>
+  <vs-drawer [isOpened]="true" [hasBackdrop]="false" [shouldAddToggleButtonMargin]="true">
+    <div drawer class="flex flex-col h-full grid-periodos-container">
+      <vs-header title>
+        <vs-icon icon="calendar-alt"></vs-icon>
+        <vs-label title model="title" label="Conciliacoes.Periodos" />
+      </vs-header>
+      <vs-grid class="w-full h-full" [options]="gridPeriodos" />
+    </div>
+    <div class="flex w-full h-full overflow-auto">
+      <!--#region Conciliações-->
+      <div class="h-full flex home-div15">
+        <div class="w-expand h-full flex flex-column home-div16 border-r-2">
+          <vs-layout class="flex-1 border-b-2">
+            <vs-header title class="header-grid-desc">
+              <vs-icon icon="book"></vs-icon>
+              <vs-label title model="title" label="Conciliacoes.Lancamentos"></vs-label>
+            </vs-header>
+
+            <div content>
+              <vs-grid class="w-full w-expand" [options]="gridLancamentos"></vs-grid>
+            </div>
+          </vs-layout>
+
+          <vs-layout class="flex-1">
+            <div content>
+              <vs-grid class="w-full w-expand" [options]="gridLancamentosDet" />
+            </div>
+          </vs-layout>
+        </div>
+
+        <div class="w-expand h-full flex flex-column home-div20">
+          <vs-layout class="flex-1 border-b-2">
+            <vs-header title class="header-grid-desc">
+              <vs-icon icon="calculator"></vs-icon>
+              <vs-label title model="title" label="Conciliacoes.Apuracoes"></vs-label>
+            </vs-header>
+
+            <div content>
+              <vs-grid class="w-full w-expand" [options]="gridApuracoes" />
+            </div>
+
+          </vs-layout>
+
+          <vs-layout class="flex-1">
+            <div content>
+              <vs-grid class="w-full w-expand" [options]="gridApuracoesDet" />
+            </div>
+          </vs-layout>
+        </div>
+      </div>
+      <!--#endregion Conciliações-->
+    </div>
+  </vs-drawer>
+</div>
