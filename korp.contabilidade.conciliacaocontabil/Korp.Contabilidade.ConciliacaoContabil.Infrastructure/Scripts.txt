@@ -1,0 +1,10 @@
+﻿cd .\Korp.Contabilidade.ConciliacaoContabil.Infrastructure\
+dotnet ef migrations add "Adding ..." -s ..\Korp.Contabilidade.ConciliacaoContabil.Host\ --context KorpContabilidadeConciliacaoContabilDbContext
+
+dotnet ef database update -s ..\Korp.Contabilidade.ConciliacaoContabil.Host\ --context KorpContabilidadeConciliacaoContabilDbContext
+
+revert migration
+    dotnet ef --startup-project ..\Korp.Contabilidade.ConciliacaoContabil.Host\ database update "Migration name" --context KorpContabilidadeConciliacaoContabilDbContext
+    
+remove migration
+    dotnet ef --startup-project ..\Korp.Contabilidade.ConciliacaoContabil.Host\ migrations remove --context KorpContabilidadeConciliacaoContabilDbContext

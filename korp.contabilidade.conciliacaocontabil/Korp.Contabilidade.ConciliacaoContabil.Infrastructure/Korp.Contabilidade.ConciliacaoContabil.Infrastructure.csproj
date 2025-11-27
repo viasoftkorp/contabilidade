@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Viasoft.Core.EntityFrameworkCore" Version="4.12.52" />
+      <PackageReference Include="Viasoft.Core.EntityFrameworkCore.SqlServer" Version="4.12.52" />
+      <PackageReference Include="Korp.EntidadesLegadas.ACL.Core" Version="2023.3.0-preview88" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Korp.Contabilidade.ConciliacaoContabil.Domain\Korp.Contabilidade.ConciliacaoContabil.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

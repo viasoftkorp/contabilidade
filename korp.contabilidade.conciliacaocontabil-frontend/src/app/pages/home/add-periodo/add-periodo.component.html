@@ -1,0 +1,63 @@
+<vs-dialog>
+    <vs-label model="label" title label="Conciliacoes.AddPeriodo.Title" />
+
+    <div content>
+        <vs-form class="h-full">
+            <form *ngIf="addPeriodoForm" [formGroup]="addPeriodoForm" class="h-full">
+
+                <div class="w-full flex flex-align-flex-start-flex-start flex-gap-10">
+                    <vs-datepicker controlName="dataInicial" placeholder="Conciliacoes.AddPeriodo.InitialDate"
+                        class="w-expand" required />
+                    <vs-datepicker controlName="dataFinal" placeholder="Conciliacoes.AddPeriodo.FinalDate"
+                        class="w-expand" required />
+                </div>
+                <vs-input formControlName="descricao" placeholder="Conciliacoes.AddPeriodo.Description"
+                    class="w-full"></vs-input>
+                <div class="flex w-full flex-gap-10 h-[66%]">
+                    <vs-layout>
+                        <vs-label title model="sub_title" label="Conciliacoes.AddPeriodo.FilterConciliacao" />
+                        <div content formArrayName="tipoApuracoes">
+                            <div *ngFor="let control of tipoApuracoes.controls; let i = index">
+                                <vs-checkbox [formControlName]="i" [label]="tipoConciliacoes[i]?.descricao" />
+                            </div>
+                        </div>
+                        <div footer class="w-full flex flex-align-flex-end-flex-start">
+                            <vs-button label="Conciliacoes.AddPeriodo.ToggleFilter" type="cancel"
+                                (clickEvent)="toggleAllTipoApuracoes()" />
+                        </div>
+
+                    </vs-layout>
+                    <vs-layout>
+                        <vs-label title model="sub_title" label="Conciliacoes.AddPeriodo.FilterCompany" />
+                        <div content>
+                            <vs-tree-view [config]="treeConfig()" />
+                        </div>
+                        <div footer class="w-full flex flex-align-flex-end-flex-start">
+                            <vs-button label="Conciliacoes.AddPeriodo.ToggleFilter" type="cancel"
+                                (clickEvent)="toggleAllEmpresas()" />
+                        </div>
+
+                    </vs-layout>
+                </div>
+
+            </form>
+        </vs-form>
+
+    </div>
+    <div footer class="flex flex-align-flex-end-flex-start">
+        <vs-label *ngIf="this.addPeriodoForm?.errors?.endDateBeforeStartDate; else minItems" model="error"
+            label="Conciliacoes.AddPeriodo.Errors.EndDateBeforeStartDate" />
+        <ng-template #minItems>
+            <vs-label *ngIf="this.tipoApuracoes.touched && this.tipoApuracoes.errors?.atLeastOneTrue else minLength"
+                model="error" label="Conciliacoes.AddPeriodo.Errors.ConciliacaoMinLength" />
+        </ng-template>
+        <ng-template #minLength>
+            <vs-label *ngIf="this.empresas.errors?.atLeastOneItem" model="error"
+                label="Conciliacoes.AddPeriodo.Errors.CompanyMinLength" />
+        </ng-template>
+        <vs-button [disabled]="!canSave || isSaving" type="save" (clickEvent)="savePeriodo()" class="ml-2">
+            <vs-label *ngIf="!isSaving" label="Conciliacoes.AddPeriodo.Save" />
+            <vs-spinner diameter="30" *ngIf="isSaving"></vs-spinner>
+        </vs-button>
+    </div>
+</vs-dialog>
